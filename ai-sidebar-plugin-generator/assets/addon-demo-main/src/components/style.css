@@ -1,0 +1,57 @@
+body {
+  background-color: transparent !important;
+}
+.page {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+}
+
+.page > .header {
+  padding: 12px 16px;
+}
+
+.content {
+  padding: 0 16px 12px 16px;
+}
+
+.line {
+  margin-top: 1em;
+}
+
+.title {
+  padding: 0;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+}
+
+.table-container {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.info-item {
+  margin-bottom: 8px;
+}
+
+.modal-form-item {
+  margin-bottom: 16px;
+}
+
+.modal-form-item label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
