@@ -1,0 +1,21 @@
+{
+  "name": "field-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "dingtalk-docs-cool-app start:field",
+    "build": "dingtalk-docs-cool-app pack:field",
+    "pack": "dingtalk-docs-cool-app pack:field",
+    "typecheck": "tsc --noEmit --project tsconfig.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dingtalk-docs-cool-app": "0.3.4",
+    "@types/node-fetch": "^2.6.12"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
+}
