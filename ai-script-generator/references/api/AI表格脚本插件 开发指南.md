@@ -96,13 +96,13 @@ AI表格的数据对象有以下几类：
 
 脚本插件中提供了一个全局变量`Input`支持在运行页面中创建交互式UI，等待用户输入后执行后续步骤。每个交互式输入法都是异步的，因此调用此API时需要使用`await`表达式。
 
-Input模块的API具体使用说明参见：[《Input模块》](../../../shared/references/api/modules/Input模块.md)
+Input模块的API具体使用说明参见：[《Input模块》](./Input模块.md)
 
 ## Output API
 
 脚本插件中提供了一个全局变量`Output`支持在运行页面中展示丰富的数据信息。
 
-Output模块的API具体使用说明参见：[《Output模块》](../../../shared/references/api/modules/Output模块.md)
+Output模块的API具体使用说明参见：[《Output模块》](./Output模块.md)
 
 # 常见问题
 

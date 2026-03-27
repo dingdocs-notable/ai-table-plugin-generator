@@ -219,6 +219,55 @@ base.deleteSheet('sht123456').getSheets();
 
 ```
 
+### getCorpId
+
+获取文档所属企业的 CorpId。
+
+> ⚠️ **仅脚本插件可用**：此 API 仅支持在脚本插件中使用，不支持在边栏插件中调用。
+
+```typescript
+getCorpId(): string
+```
+
+**返回值**
+
+*   `string` - 文档所属企业的 CorpId
+    
+
+**示例**
+
+```typescript
+const corpId = Base.getCorpId();
+Output.log(`企业ID: ${corpId}`);
+```
+
+### getCurrentUser
+
+获取当前用户信息。
+
+> ⚠️ **仅脚本插件可用**：此 API 仅支持在脚本插件中使用，不支持在边栏插件中调用。
+
+```typescript
+getCurrentUser(): Promise<UserCellValue | null>
+```
+
+**返回值**
+
+*   `Promise<UserCellValue | null>` - 当前用户信息，包含 `userId`、`unionId`、`name` 等字段。如果用户不存在则返回 `null`
+    
+
+**示例**
+
+```typescript
+const currentUser = await Base.getCurrentUser();
+if (currentUser) {
+  Output.log(`当前用户: ${currentUser.name}`);
+  Output.log(`用户ID: ${currentUser.userId}`);
+} else {
+  Output.log('无法获取当前用户信息');
+}
+```
+
 ### isFieldOfType
 
 判断字段是否为指定字段类型
@@ -247,14 +296,6 @@ if (field && base.isFieldOfType(field, 'number')) {
     console.log('This is a number field');
 } else {
     console.log('This is not a number Field')
-}
-```
-```typescript
-const field = sheet.getField('数字');
-if (field && Base.isFieldOfType(field, 'number')) {
-    Output.log('This is a number field');
-} else {
-    Output.log('This is not a number Field')
 }
 ```
 

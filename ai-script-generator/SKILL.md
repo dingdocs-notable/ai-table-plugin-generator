@@ -101,7 +101,10 @@ Before writing code, consult relevant API documentation in `references/api` and 
 - `../shared/references/api/modules/Sheet 模块.md` - Batch operations
 
 **For Input API (including Button Trigger):**
-- `../shared/references/api/modules/Input模块.md` - Complete Input API including Record type for button triggers
+- `references/api/Input模块.md` - Complete Input API including Record type for button triggers
+
+**For Output API:**
+- `references/api/Output模块.md` - Output logging and error reporting
 
 **For Type Definitions:**
 - `../shared/references/api/interface/API 类型定义.md` - Type structures
@@ -836,7 +839,7 @@ const formResult = await Input.formAsync('配置', [
 
 **操作步骤**：
 1. 使用 `type: 'record'` 表单项支持按钮触发
-2. 查阅 `../shared/references/api/modules/Input模块.md` 确认 Record 类型用法
+2. 查阅 `references/api/Input模块.md` 确认 Record 类型用法
 3. 读取当前值 → 加 1 → 写回
 
 **关键点**：使用 `referenceSheet` 关联 Sheet 表单项，按钮触发时自动填充记录

@@ -130,6 +130,7 @@ Output.warn(message: any)       // 警告信息（黄色）
 Output.error(message: any)      // 错误信息（红色）
 Output.markdown(message: string)  // Markdown格式
 Output.table(data: any)         // 表格展示
+Output.clear()                  // 清空运行面板
 ```
 
 ## Type Definitions

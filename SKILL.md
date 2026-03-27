@@ -84,8 +84,8 @@ metadata:
 | 数据表操作 | `shared/references/api/modules/Sheet 模块.md` |
 | 字段操作 | `shared/references/api/modules/Field 模块.md` + `Field api/[字段类型].md` |
 | 记录操作 | `shared/references/api/modules/Record 模块.md` |
-| 用户输入（脚本） | `shared/references/api/modules/Input模块.md` |
-| 日志输出（脚本） | `shared/references/api/modules/Output模块.md` |
+| 用户输入（脚本） | `ai-script-generator/references/api/Input模块.md` |
+| 日志输出（脚本） | `ai-script-generator/references/api/Output模块.md` |
 | 事件监听（边栏） | `ai-sidebar-plugin-generator/references/Event事件模块.md` |
 | 类型定义 | `shared/references/api/interface/API 类型定义.md` |
 | 字段值结构 | `shared/references/api/interface/字段类型结构.md` |
@@ -191,6 +191,8 @@ ai-table-plugin-generator/
 │   ├── SKILL.md                          # 脚本生成完整工作流
 │   ├── references/                       # 脚本开发指南和 API 速查
 │   │   ├── api/
+│   │   │   ├── Input模块.md              # 用户输入 API（脚本专属）
+│   │   │   └── Output模块.md             # 日志输出 API（脚本专属）
 │   │   └── examples/                     # 脚本示例和 manifest 模板
 │   └── assets/
 │       └── manifest-template.json        # manifest.json 模板
@@ -242,8 +244,6 @@ ai-table-plugin-generator/
             ├── Field 模块.md
             ├── Record 模块.md
             ├── View 模块.md
-            ├── Input模块.md
-            ├── Output模块.md
             ├── UI 模块.md
             └── Field api/                # 各字段类型专属 API
 ```

@@ -165,13 +165,24 @@ Before writing code, consult relevant API documentation:
 - `../shared/references/api/modules/Base 模块.md` - Base object methods
 - `../shared/references/api/modules/Sheet 模块.md` - Sheet operations
 - `../shared/references/api/modules/Field 模块.md` - Field operations
+- `../shared/references/api/modules/Field api/` - Field type-specific APIs (TextField, NumberField, SingleSelectField, DateField, UserField, AttachmentField, etc.)
 - `../shared/references/api/modules/Record 模块.md` - Record operations
 - `../shared/references/api/modules/View 模块.md` - View operations
+- `../shared/references/api/modules/GridView 表格视图.md` - GridView operations
+- `../shared/references/api/modules/UI 模块.md` - UI operations (`toast`, `getSelection`, `setSelection`)
 
 **For UI Page (Interactions):**
 - `./references/AI表格边栏插件 开发指南.md` - Plugin development guide
 - `./references/Event事件模块.md` - Event monitoring
-- `./references/其他接口.md` - UI and helper APIs
+- `./references/其他接口.md` - UI and helper APIs (`getLocale`, `getTheme`, `batchUploadFiles`, `configPermission`, `getAuthCode`)
+
+**Important Note - Getting CorpId and User Info in Sidebar Plugins:**
+> ⚠️ `Base.getCorpId()` 和 `Base.getCurrentUser()` 仅支持脚本插件，**不支持边栏插件**。
+> 
+> 如需在边栏插件中获取企业 ID 或当前用户信息，请参考 `./references/其他接口.md` 中的 `getAuthCode` API：
+> 1. 从 URL 参数获取 `corpId`（配置 UI 地址时使用 `?corpId=$CORPID$`）
+> 2. 调用 `Dingdocs.base.host.getAuthCode(corpId)` 获取免登码
+> 3. 使用免登码调用钉钉开放平台接口获取用户信息
 
 **For Type Definitions:**
 - `../shared/references/api/interface/API 类型定义.md` - Type structures

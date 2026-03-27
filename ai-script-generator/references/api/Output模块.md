@@ -160,3 +160,19 @@ Output.table([
 ```
 
 ![image.png](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/Q35O851wgBDDEl9V/img/9b57fc6d-c58e-4779-a4bf-bfe3bff9479e.png)
+
+### clear
+
+清空运行插件面板中的所有输出内容。
+
+```typescript
+clear: () => void;
+```
+
+**示例**
+
+```typescript
+Output.log('这条信息会被清除');
+Output.clear();
+Output.log('面板已清空，这是新的输出');
+```
