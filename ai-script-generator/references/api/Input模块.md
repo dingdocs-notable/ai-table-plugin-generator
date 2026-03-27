@@ -4,23 +4,42 @@
 
 支持在运行页面中创建交互式UI，等待用户输入后执行后续步骤。每个交互式输入法都是异步的，因此调用此API时需要使用`await`表达式。
 
+## 入参校验
+
+`textAsync`、`selectAsync`、`formAsync` 均支持传入可选的 `config` 参数，用于对用户输入进行校验。校验不通过时，会在输入框下方展示错误信息，阻止用户提交，直到校验通过为止。
+
+```typescript
+interface InputConfig<T> {
+  /**
+   * 校验函数，接收用户输入值，返回校验结果。
+   * 支持同步或异步校验。
+   */
+  validate?: (response: T) => ValidationResult | Promise<ValidationResult>;
+}
+
+type ValidationResult =
+  | { valid: true }
+  | { valid: false; error: string };
+```
+
 ### textAsync
 
 在运行插件面板插入一个输入框，等待用户输入完毕后执行后续操作。
 
 ```typescript
-textAsync: (label: string) => Promise<string>;
+textAsync: (label: string, config?: InputConfig<string>) => Promise<string>;
 
 ```
 
 **参数**
 
-*   `label`: `string` - 输入框标题
+*   `label`: `string` - 输入框标题
+*   `config`: `InputConfig<string>`（可选）- 输入校验配置
     
 
 **返回值**
 
-*   `Promise<string>` - 用户输入并提交后返回的输入结果
+*   `Promise<string>` - 用户输入并提交后返回的输入结果
     
 
 **示例**
@@ -31,6 +50,20 @@ Output.info('用户输入的内容为', userInput);
 
 ```
 
+**带校验示例**
+
+```typescript
+const userInput = await Input.textAsync('请输入手机号', {
+  validate: (value) => {
+    if (/^1[3-9]\d{9}$/.test(value)) {
+      return { valid: true };
+    }
+    return { valid: false, error: '请输入正确的手机号格式' };
+  },
+});
+Output.success(`手机号：${userInput}`);
+
+```
 ![image.png](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/pLdn55XMvyeMyno8/img/f9995ccb-041f-4bd7-990f-fe08d1f3ce5e.png)
 
 ### selectAsync
@@ -38,7 +71,7 @@ Output.info('用户输入的内容为', userInput);
 在运行插件面板插入一个选择器，显示一组按钮，等待用户点击后执行后续操作。
 
 ```typescript
-selectAsync: <V = unknown>(label: string, options: Array<string | SelectOption<V>>) => Promise<string | V | undefined>;
+selectAsync: <V = unknown>(label: string, options: Array<string | SelectOption<V>>, config?: InputConfig<string | V | undefined>) => Promise<string | V | undefined>;
 
 interface SelectOption<V> {
   /** 选项展示的文本 */
@@ -50,14 +83,14 @@ interface SelectOption<V> {
 
 **参数**
 
-*   `label`: `string` - 选择器标题
-    
-*   `options`: `Array<string | SelectOption>`选项配置，支持设置字符串格式的选项，或同时配置选项的文案和实际值。
+*   `label`: `string` - 选择器标题
+*   `options`: `Array<string | SelectOption>` - 选项配置，支持设置字符串格式的选项，或同时配置选项的文案和实际值
+*   `config`: `InputConfig<string | V | undefined>`（可选）- 输入校验配置
     
 
 **返回值**
 
-*   `Promise<string | V | undefined>` - 用户点击按钮后返回的结果
+*   `Promise<string | V | undefined>` - 用户点击按钮后返回的结果
     
 
 **示例**
@@ -68,14 +101,27 @@ Output.info('用户选择的答案为', userInput);
 
 ```
 
-![image.png](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/pLdn55XMvyeMyno8/img/fb8a8701-ca5a-40d7-ae7e-5a595bb7153d.png)
+**带校验示例**
+
+```typescript
+const answer = await Input.selectAsync('请选择正确答案', ['A', 'B', 'C', 'D'], {
+  validate: (value) => {
+    if (value === 'B') {
+      return { valid: true };
+    }
+    return { valid: false, error: '答案不正确，请重新选择' };
+  },
+});
+Output.success(`回答正确：${answer}`);
+
+```
 
 ### formAsync
 
 在运行面板中插入一个表单，等待用户提交后执行后续操作
 
 ```typescript
-formAsync: (title: string, items: FormItem[]) => Promise<Record<FormItemKey, FormItemResult | undefined>>;
+formAsync: (title: string, items: FormItem[], config?: InputConfig<Record<FormItemKey, FormItemResult | undefined>>) => Promise<Record<FormItemKey, FormItemResult | undefined>>;
 
 /** 表单项的唯一标识 */
 type FormItemKey = string;
@@ -187,14 +233,14 @@ type FormItemResult =
 
 **参数**
 
-*   `title`: `string` - 表单标题
-    
-*   `item`: `FormItem[]`表单项。
+*   `title`: `string` - 表单标题
+*   `items`: `FormItem[]` - 表单项
+*   `config`: `InputConfig<Record<FormItemKey, FormItemResult | undefined>>`（可选）- 输入校验配置
     
 
 **返回值**
 
-*   `Promise<Record<FormItemKey, FormItemResult | undefined>>` - 用户点击提交后返回的结果
+*   `Promise<Record<FormItemKey, FormItemResult | undefined>>` - 用户点击提交后返回的结果
     
 
 **示例**

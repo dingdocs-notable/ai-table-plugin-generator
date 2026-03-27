@@ -96,6 +96,27 @@ Output.error('错误信息');
 
 ![image.png](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/Q35O851wgBDDEl9V/img/024e971d-b54a-47cd-9e7e-acda507444f8.png)
 
+### success
+
+在运行插件面板打印文本信息，背景色为绿色，一般用于输出成功信息。
+
+```typescript
+success: (message: any) => void;
+
+```
+
+**参数**
+
+*   `message`: `any` - 需要打印的信息
+    
+
+**示例**
+
+```typescript
+Output.success('操作成功');
+
+```
+
 ### markdown
 
 在运行插件面板中打印富文本内容，支持标准的markdown语法。

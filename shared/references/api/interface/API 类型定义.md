@@ -622,14 +622,26 @@ interface PagedFieldValues<T extends FieldType> {
 ### 类型名称：CellValue
 ### 类型定义
 ```typescript
+type PhoneValue = string; // 电话号码
+
+type UsersCellValue = UserCellValue[];
+
+type GroupsCellValue = GroupCellValue[];
+
 type CellValue =
   string | boolean | number |
+  PhoneValue |
   SingleSelectCellValue |
   MultiSelectCellValue |
   AssociationsValue |
   AttachmentValue |
   RichTextValue |
   LinkValue |
+  UsersCellValue |
+  DepartmentCellValue[] |
+  GroupsCellValue |
+  UserCellValue |
+  GeoLocationValue |
   null;
 ```
 
